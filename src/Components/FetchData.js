@@ -1,23 +1,18 @@
-import React, {useEffect} from 'react'
-
-
-
+import React, {useState, useEffect} from 'react'
 
 
 function FetchData() {
 
-    fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(res => {
-        return res.json()
-    })
-    .then(data => {
-        console.log(data)
-    })
+    const [data, setData] = useState(null)
 
+    useEffect = () => {
+        const sample = require('../jsons/random.json')
+        setData(sample)
+    }
 
     return (
         <div>
-
+            {}
         </div>
     )
 }
