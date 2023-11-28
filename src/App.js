@@ -1,12 +1,19 @@
 import "./styles.css"
+import TextLengthSelector from "./Components/TextLengthSelector";
+import FetchData from "./Components/FetchData"
 
 function App() {
+
+  
+
   return (
+    
     <div className="typer">
+      <FetchData/>
       <div className="header">Typer</div>
       <div className="command-center">
         <div className="settings-bar">
-          <div className="text-length-selector">10 / 25 / 50 / 100 / 250</div>
+          <TextLengthSelector/>
           <div className="stats-display">WPM: XX / ACC: XX</div>
         </div>
         <div className="main-container">

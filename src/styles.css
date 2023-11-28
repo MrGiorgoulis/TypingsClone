@@ -53,6 +53,15 @@ body{
     justify-content: space-between;    
 }
 
+.length-selector{
+    margin-right: 6px;
+    margin-left: 6px;
+}
+
+.length-selector:hover{
+    cursor: pointer;
+}
+
 .main-container{
     padding: 1rem;
     color: #575d5e;
