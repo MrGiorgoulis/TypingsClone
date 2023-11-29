@@ -20,18 +20,6 @@ function TextLengthSelector({wordCount, onUpdateWordCount}){
         const nextItems = isActive.map((item) => ({
             ...item,
             state: item.id === id ? true : false,
-            // if(i===id){
-            //     return {
-            //         ...item,
-            //         state: true,
-            //     }
-            // }
-            // else{
-            //     return {
-            //         ...item,
-            //         state: false,
-            //     }
-            // }
         }))
 
         setIsActive(nextItems)
@@ -42,9 +30,31 @@ function TextLengthSelector({wordCount, onUpdateWordCount}){
     return(
         <div className='settings-bar'>
 
-            <div 
+            {isActive.map((item) => {
+                return <div>
+                    <div
+                    key={item.id} 
+                    className='length-selector'
+                    onClick={(e) => {handleClick(e, item.id)}}
+                    style={{
+                        display: 'inline-block',
+                        borderBottom: isActive[item.id].state ? '2px solid' : '',
+                        paddingBottom:'1px',
+                        marginBottom:isActive[item.id].state ?'' : '1px',
+                    }}
+                    >
+                    {item.name}
+                    </div>
+                    {item.id === 4 ? '' : <div style={{display: 'inline-block'}}>|</div>}
+                    
+                </div>
+            })}
+
+            {/* <div 
             style={{
-                textDecoration: isActive.state ? 'underline' : ''
+                borderBottom: isActive[0].state ? '2px solid' : '',
+                paddingBottom:'1px',
+                marginBottom:isActive[0].state ?'' : '1px',
             }}
             className='length-selector'
             onClick={(e) => {handleClick(e, 0)   
@@ -53,7 +63,8 @@ function TextLengthSelector({wordCount, onUpdateWordCount}){
             |
             <div 
             style={{
-                textDecoration: isActive.state ? 'underline' : ''
+                borderBottom: isActive[1].state ? '2px solid' : '',
+                paddingBottom:'1px',
             }}
             className='length-selector' 
             onClick={(e) => handleClick(e, 1)
@@ -61,7 +72,8 @@ function TextLengthSelector({wordCount, onUpdateWordCount}){
             |
             <div 
             style={{
-                textDecoration: isActive.state ? 'underline' : ''
+                borderBottom: isActive[2].state ? '2px solid' : '',
+                paddingBottom:'1px'
             }}
             className='length-selector' 
             onClick={(e) => handleClick(e, 2)
@@ -69,7 +81,8 @@ function TextLengthSelector({wordCount, onUpdateWordCount}){
             |
             <div 
             style={{
-                textDecoration: isActive.state ? 'underline' : ''
+                borderBottom: isActive[3].state ? '2px solid' : '',
+                paddingBottom:'1px'
             }}
             className='length-selector' 
             onClick={(e) => handleClick(e, 3)
@@ -77,11 +90,12 @@ function TextLengthSelector({wordCount, onUpdateWordCount}){
             |
             <div 
             style={{
-                textDecoration: isActive.state ? 'underline' : ''
+                borderBottom: isActive[4].state ? '2px solid' : '',
+                paddingBottom:'1px'
             }}
             className='length-selector' 
             onClick={(e) => handleClick(e, 4)
-            }>250</div>
+            }>250</div> */}
         </div>
     )
 }

@@ -21,7 +21,7 @@ function App() {
           <div className="stats-display">WPM: XX / ACC: XX</div>
         </div>
         <div className="main-container">
-        <FetchData/>
+          <FetchData/>
           <div className="text-display">
             Cillum velit ex minim laborum esse in ullamco Lorem exercitation commodo et. 
             Mollit Lorem laboris aute proident. Esse  cillum labore ullamco eu duis consequat 
