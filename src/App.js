@@ -1,7 +1,11 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import "./styles.css"
 import TextLengthSelector from "./Components/TextLengthSelector";
+import MainContainer from './Components/MainContainer';
 import FetchData from './Components/FetchData';
+
+export const WordCountContext = React.createContext()
+export const UpdateWordCountContext = React.createContext()
 
 function App() {
 
@@ -11,16 +15,19 @@ function App() {
   }
 
   return (
-    
+
     <div className="typer">
       <div className="header">Typer</div>
       <div className="command-center">
         <div className="settings-bar">
-          <TextLengthSelector wordCount={wordCnt} onUpdateWordCount={updateWordCount}/>
+          <UpdateWordCountContext.Provider value={setWordCnt}>
+            <TextLengthSelector />
+          </UpdateWordCountContext.Provider>
           <div className="stats-display">WPM: XX / ACC: XX</div>
         </div>
+        <MainContainer />
         <div className="main-container">
-          <FetchData wordCount={wordCnt}/>
+          <FetchData wordCount={wordCnt} />
           <div className="input-container">
             <input type="text" className="text-input"></input>
             <button className="redo-button">redo</button>

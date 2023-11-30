@@ -5,7 +5,6 @@ function TextDisplay({ wc, wordList }) {
   const [randomWords, setRandomWords] = useState([])
 
   useEffect(() => {
-    {console.log("TextDisplay useEffect run wordList is: ", wordList)}
     setRandomWords([])
     if (wordList) {
       let wordListLen = wordList.english.length
@@ -14,15 +13,11 @@ function TextDisplay({ wc, wordList }) {
         setRandomWords(prevArray => [...prevArray, newWord])
       }
     }
-    else {
-      console.log("wordList is undefined or null")
-    }
 
   }, [wc, wordList]);
 
   return (
-    <div> 
-      {console.log(randomWords)}
+    <div className='text-container'> 
       {randomWords.map((word, index) => 
       <span key={index}>{word} </span>
       )}

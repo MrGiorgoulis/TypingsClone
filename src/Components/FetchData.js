@@ -14,7 +14,6 @@ function FetchData({wordCount}) {
 
     return (
         <div>
-            {console.log("FetchData wordList: ", data, " FetchData wordCount: ", wordCount)}
             <TextDisplay wc={wordCount} wordList={data}/>
         </div>
     )
