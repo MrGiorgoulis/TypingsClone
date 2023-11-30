@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import "./styles.css"
 import TextLengthSelector from "./Components/TextLengthSelector";
-import FetchData from "./Components/FetchData"
+import TextDisplay from "./Components/TextDisplay"
+import FetchData from './Components/FetchData';
 
 function App() {
 
   const [wordCnt, setWordCnt] = useState(50)
-
   const updateWordCount = (newCount) => {
     setWordCnt(newCount)
   }
@@ -22,11 +22,6 @@ function App() {
         </div>
         <div className="main-container">
           <FetchData/>
-          <div className="text-display">
-            Cillum velit ex minim laborum esse in ullamco Lorem exercitation commodo et. 
-            Mollit Lorem laboris aute proident. Esse  cillum labore ullamco eu duis consequat 
-            esse
-          </div>
           <div className="input-container">
             <input type="text" className="text-input"></input>
             <button className="redo-button">redo</button>

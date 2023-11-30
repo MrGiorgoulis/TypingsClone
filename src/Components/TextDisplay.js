@@ -1,8 +1,9 @@
 import React from 'react'
 
-function TextDisplay() {
-  return (
-    <div></div>
+function TextDisplay({wc}){
+  return(
+    <div>
+    </div>
   )
 }
 
