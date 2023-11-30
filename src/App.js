@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import "./styles.css"
 import TextLengthSelector from "./Components/TextLengthSelector";
-import TextDisplay from "./Components/TextDisplay"
 import FetchData from './Components/FetchData';
 
 function App() {
@@ -21,7 +20,7 @@ function App() {
           <div className="stats-display">WPM: XX / ACC: XX</div>
         </div>
         <div className="main-container">
-          <FetchData/>
+          <FetchData wordCount={wordCnt}/>
           <div className="input-container">
             <input type="text" className="text-input"></input>
             <button className="redo-button">redo</button>

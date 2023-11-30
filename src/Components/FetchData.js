@@ -2,20 +2,20 @@ import React, {useState, useEffect} from 'react'
 import TextDisplay from './TextDisplay'
 
 
-function FetchData({wrds}) {
+function FetchData({wordCount}) {
 
     const sample = null
     const [data, setData] = useState(null)
 
-    useEffect = () => {
+    useEffect(() => {
         const sample = require('../jsons/random.json')
         setData(sample)
-        wrds = data
-    }
+    })
 
     return (
         <div>
-            <TextDisplay/>
+            {console.log("FetchData wordList: ", data, " FetchData wordCount: ", wordCount)}
+            <TextDisplay wc={wordCount} wordList={data}/>
         </div>
     )
 }
