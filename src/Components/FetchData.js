@@ -7,11 +7,11 @@ function FetchData({wrds}) {
     const sample = null
     const [data, setData] = useState(null)
 
-    // useEffect = ([]) => {
-    //     const sample = require('../jsons/random.json')
-    //     setData(sample)
-    //     wrds = data
-    // }
+    useEffect = () => {
+        const sample = require('../jsons/random.json')
+        setData(sample)
+        wrds = data
+    }
 
     return (
         <div>

@@ -31,7 +31,7 @@ function TextLengthSelector({wordCount, onUpdateWordCount}){
         <div className='settings-bar'>
 
             {isActive.map((item) => {
-                return <div>
+                return <div key={item.id + '_container'}>
                     <div
                     key={item.id} 
                     className='length-selector'
