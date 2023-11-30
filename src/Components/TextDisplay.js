@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { RandomWordsContext, SetRandomWordsContext } from './MainContainer';
 
 function TextDisplay({ wc, wordList }) {
 
-  const [randomWords, setRandomWords] = useState([])
+  const randomWords = useContext(RandomWordsContext)
+  const setRandomWords = useContext(SetRandomWordsContext)
 
   useEffect(() => {
     setRandomWords([])
@@ -13,7 +15,6 @@ function TextDisplay({ wc, wordList }) {
         setRandomWords(prevArray => [...prevArray, newWord])
       }
     }
-
   }, [wc, wordList]);
 
   return (
@@ -21,7 +22,6 @@ function TextDisplay({ wc, wordList }) {
       {randomWords.map((word, index) => 
       <span key={index}>{word} </span>
       )}
-
     </div>
   )
 }

@@ -25,14 +25,9 @@ function App() {
           </UpdateWordCountContext.Provider>
           <div className="stats-display">WPM: XX / ACC: XX</div>
         </div>
-        <MainContainer />
-        <div className="main-container">
-          <FetchData wordCount={wordCnt} />
-          <div className="input-container">
-            <input type="text" className="text-input"></input>
-            <button className="redo-button">redo</button>
-          </div>
-        </div>
+        <WordCountContext.Provider value={wordCnt}>
+          <MainContainer className="main-container"/>
+        </WordCountContext.Provider>
       </div>
       <div className="footer">user guide / themes</div>
     </div>
