@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { RandomWordsContext, SetRandomWordsContext } from './MainContainer';
+import { IsWordValidContext, RandomWordsContext, SetRandomWordsContext } from './MainContainer';
 
 function TextDisplay({ wc, wordList }) {
 
   const randomWords = useContext(RandomWordsContext)
   const setRandomWords = useContext(SetRandomWordsContext)
+  const isWordValid = useContext(IsWordValidContext)
 
   useEffect(() => {
     setRandomWords([])
@@ -20,7 +21,10 @@ function TextDisplay({ wc, wordList }) {
   return (
     <div className='text-container'> 
       {randomWords.map((word, index) => 
-      <span key={index}>{word} </span>
+      <span key={index}
+      style={{
+      color: isWordValid[index] === undefined ? '' : isWordValid[index] ? 'green' : 'red'}}
+      >{word} </span>
       )}
     </div>
   )
