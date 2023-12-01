@@ -7,9 +7,9 @@ function TextLengthSelector({ }) {
   const UpdateWordCount = useContext(UpdateWordCountContext)
 
   const [isActive, setIsActive] = useState([
-    { id: 0, name: '10', state: false },
+    { id: 0, name: '10', state: true },
     { id: 1, name: '25', state: false },
-    { id: 2, name: '50', state: true },
+    { id: 2, name: '50', state: false },
     { id: 3, name: '100', state: false },
     { id: 4, name: '250', state: false },
   ])

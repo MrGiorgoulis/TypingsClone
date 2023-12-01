@@ -2,14 +2,13 @@ import React, { useState } from 'react'
 import "./styles.css"
 import TextLengthSelector from "./Components/TextLengthSelector";
 import MainContainer from './Components/MainContainer';
-import FetchData from './Components/FetchData';
 
 export const WordCountContext = React.createContext()
 export const UpdateWordCountContext = React.createContext()
 
 function App() {
 
-  const [wordCnt, setWordCnt] = useState(50)
+  const [wordCnt, setWordCnt] = useState(10)
   const updateWordCount = (newCount) => {
     setWordCnt(newCount)
   }
