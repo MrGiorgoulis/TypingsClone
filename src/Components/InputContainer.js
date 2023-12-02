@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import RedoButton from './RedoButton'
 import { IsWordValidContext, RandomWordsContext } from './MainContainer'
 import { WordCountContext } from '../App'
@@ -16,11 +16,6 @@ function InputContainer() {
   const [currentLetterIndex, setCurrentLetterIndex] = useState(0)
   const [inputValue, setInputValue] = useState('')
 
-  // useEffect(() => {
-  //   console.log("Updated valid: ", valid)
-  //   console.log("Updated currentLetterIndex:", currentLetterIndex)
-  // }, [currentLetterIndex, valid])
-
   const validateLetter = e => {
     setCurrentLetterIndex(prev => prev + 1)
 
@@ -32,13 +27,25 @@ function InputContainer() {
 
     if (expectedWord === typedWord) {
       setValid(true)
-      // const nextItems = isWordValid.map((item) => {
-      //   state : item
-      // })
-      // setIsWordValid()
     }
     else {
       setValid(false)
+    }
+  }
+
+  const validateSpace = e => {
+
+    const expectedWord = randomWords[currentWordIndex]
+    const typedWord = e.target.value
+
+    console.log("Typed Word: ", typedWord)
+    console.log("ExpectedWord: ", expectedWord)
+
+    if(expectedWord===typedWord){
+      setIsWordValid([...isWordValid, true])
+    }
+    else{
+      setIsWordValid([...isWordValid, false])
     }
   }
 
@@ -48,7 +55,6 @@ function InputContainer() {
 
       const expectedWord = randomWords[currentWordIndex].slice(0, currentLetterIndex - 1)
       const typedWord = e.target.value.slice(0, e.target.value.length - 1)
-      { console.log("TARGE VALUE BACKSPACE: ", typedWord) }
 
       console.log("Typed Word: ", typedWord)
       console.log("ExpectedWord: ", expectedWord)
@@ -58,7 +64,6 @@ function InputContainer() {
       }
       else {
         setValid(false)
-
       }
     }
   }
@@ -68,12 +73,15 @@ function InputContainer() {
       validateLetter(e)
     }
     else if (e.keyCode === 32) {
+      validateSpace(e)
+      console.log(isWordValid[0])
       if (currentWordIndex + 1 < wordCount) {
         setCurrentLetterIndex(0)
         setCurrentWordIndex(prev => prev + 1)
         e.preventDefault()
         setInputValue('')
         setValid(true)
+
       }
       else {
         e.preventDefault()

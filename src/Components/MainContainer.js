@@ -24,7 +24,7 @@ function MainContainer() {
           <div className="main-container">
             <IsWordValidContext.Provider value={isWordValid}>
               <FetchData wordCount={wordCount} />
-              <SetIstWordValidContext.Provider>
+              <SetIstWordValidContext.Provider value={setIsWordValid}>
                 <InputContainer/>
               </SetIstWordValidContext.Provider>
             </IsWordValidContext.Provider>

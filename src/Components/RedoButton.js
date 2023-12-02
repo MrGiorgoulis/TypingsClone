@@ -1,8 +1,13 @@
 import React from 'react'
 
 function RedoButton() {
+
+  const handleClick = () => {
+
+  }
+
   return (
-      <button className="redo-button">redo</button>
+      <button className="redo-button" onClick={handleClick}>redo</button>
   )
 }
 
