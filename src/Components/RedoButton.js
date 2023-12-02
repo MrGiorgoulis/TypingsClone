@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { RedoStateUpdateContext } from './MainContainer'
 
 function RedoButton() {
 
-  const handleClick = () => {
+  const updateRedoState = useContext(RedoStateUpdateContext)
 
+  const handleClick = () => {
+    updateRedoState()
   }
 
   return (

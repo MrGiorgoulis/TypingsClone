@@ -1,8 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import RedoButton from './RedoButton'
 import { IsWordValidContext, RandomWordsContext } from './MainContainer'
 import { WordCountContext } from '../App'
 import { SetIstWordValidContext } from './MainContainer'
+import { RedoStateContext,RedoStateUpdateContext } from './MainContainer'
 
 function InputContainer() {
 
@@ -10,11 +11,15 @@ function InputContainer() {
   const wordCount = useContext(WordCountContext)
   const isWordValid = useContext(IsWordValidContext)
   const setIsWordValid = useContext(SetIstWordValidContext)
+  const setShouldReRender = useContext(RedoStateUpdateContext)
+  const shouldReRender = useContext(RedoStateContext)
 
   const [valid, setValid] = useState(null)
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [currentLetterIndex, setCurrentLetterIndex] = useState(0)
   const [inputValue, setInputValue] = useState('')
+
+  const inputRef = useRef(null)
 
   const validateLetter = e => {
     setCurrentLetterIndex(prev => prev + 1)
@@ -43,9 +48,11 @@ function InputContainer() {
 
     if(expectedWord===typedWord){
       setIsWordValid([...isWordValid, true])
+      console.log("PRASINO")
     }
     else{
       setIsWordValid([...isWordValid, false])
+      console.log("KOKKINO")
     }
   }
 
@@ -69,7 +76,7 @@ function InputContainer() {
   }
 
   const handleChange = e => {
-    if (e.keyCode !== 8 && e.keyCode !== 32) {
+    if (e.keyCode !== 8 && e.keyCode !== 32 && e.keyCode!==9) {
       validateLetter(e)
     }
     else if (e.keyCode === 32) {
@@ -92,7 +99,16 @@ function InputContainer() {
     else if (e.keyCode === 8) {
       validateBackSpace(e)
     }
+    else if(e.keyCode === 9){}
   }
+
+  useEffect(() => {
+    setInputValue('')
+    setCurrentLetterIndex(0)
+    setCurrentWordIndex(0)
+    setValid(true)
+    inputRef.current.focus()
+  },[shouldReRender])
 
   return (
     <div>
@@ -100,6 +116,7 @@ function InputContainer() {
         <input
           type="text"
           className="text-input"
+          ref={inputRef}
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={

@@ -1,16 +1,21 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import TextDisplay from './TextDisplay'
-
+import { RedoStateContext, RedoStateUpdateContext } from './MainContainer'
 
 function FetchData({wordCount}) {
 
     const sample = null
     const [data, setData] = useState(null)
 
+    const setShouldReRender = useContext(RedoStateUpdateContext)
+    const shouldReRender = useContext(RedoStateContext)
+
     useEffect(() => {
-        const sample = require('../jsons/random.json')
-        setData(sample)
-    })
+        if(shouldReRender) {
+            const sample = require('../jsons/random.json')
+            setData(sample)
+        }
+    },[shouldReRender])
 
     return (
         <div>

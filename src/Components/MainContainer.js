@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import FetchData from './FetchData'
 import InputContainer from './InputContainer'
 import { WordCountContext } from '../App'
@@ -9,6 +9,9 @@ export const SetRandomWordsContext = React.createContext()
 export const IsWordValidContext = React.createContext()
 export const SetIstWordValidContext = React.createContext()
 
+export const RedoStateContext = React.createContext()
+export const RedoStateUpdateContext = React.createContext()
+
 function MainContainer() {
 
   const wordCount = useContext(WordCountContext)
@@ -17,18 +20,33 @@ function MainContainer() {
 
   const [isWordValid, setIsWordValid] = useState([])
 
+  const [redoState, setRedoState] = useState(true)
+
+  const updateRedoState = useCallback(() => {
+    setRedoState(prevState => !prevState)
+  }, [])
+
+  useEffect(()=>{
+    {console.log(redoState)}
+    setIsWordValid([])
+  }, [redoState])
+
   return (
     <div>
       <SetRandomWordsContext.Provider value={setRandomWords}>
         <RandomWordsContext.Provider value={randomWords}>
-          <div className="main-container">
-            <IsWordValidContext.Provider value={isWordValid}>
-              <FetchData wordCount={wordCount} />
-              <SetIstWordValidContext.Provider value={setIsWordValid}>
-                <InputContainer/>
-              </SetIstWordValidContext.Provider>
-            </IsWordValidContext.Provider>
-          </div>
+          <RedoStateUpdateContext.Provider value={updateRedoState}>
+            <RedoStateContext.Provider value={redoState}>
+              <div className="main-container">
+              <IsWordValidContext.Provider value={isWordValid}>
+                  <FetchData wordCount={wordCount} />
+                  <SetIstWordValidContext.Provider value={setIsWordValid}>
+                    <InputContainer/>
+                  </SetIstWordValidContext.Provider>
+              </IsWordValidContext.Provider>
+            </div>
+            </RedoStateContext.Provider>
+          </RedoStateUpdateContext.Provider>
         </RandomWordsContext.Provider>
       </SetRandomWordsContext.Provider>
     </div>
