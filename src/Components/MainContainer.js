@@ -9,9 +9,6 @@ export const SetRandomWordsContext = React.createContext()
 export const IsWordValidContext = React.createContext()
 export const SetIstWordValidContext = React.createContext()
 
-// export const RedoStateContext = React.createContext()
-// export const RedoStateUpdateContext = React.createContext()
-
 function MainContainer() {
 
   const wordCount = useContext(WordCountContext)

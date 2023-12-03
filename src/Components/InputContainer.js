@@ -3,7 +3,7 @@ import RedoButton from './RedoButton'
 import { IsWordValidContext, RandomWordsContext } from './MainContainer'
 import { WordCountContext } from '../App'
 import { SetIstWordValidContext } from './MainContainer'
-import { RedoStateContext,RedoStateUpdateContext } from '../App'
+import { RedoStateContext,RedoStateUpdateContext, SetStopTimer } from '../App'
 
 function InputContainer() {
 
@@ -11,8 +11,8 @@ function InputContainer() {
   const wordCount = useContext(WordCountContext)
   const isWordValid = useContext(IsWordValidContext)
   const setIsWordValid = useContext(SetIstWordValidContext)
-  const setShouldReRender = useContext(RedoStateUpdateContext)
   const shouldReRender = useContext(RedoStateContext)
+  const seTimer = useContext(SetStopTimer)
 
   const [valid, setValid] = useState(null)
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
@@ -77,6 +77,9 @@ function InputContainer() {
 
   const handleChange = e => {
     if (e.keyCode !== 8 && e.keyCode !== 32 && e.keyCode!==9) {
+      if(currentWordIndex===0 && currentLetterIndex === 0 ){
+        seTimer(true)
+      }
       validateLetter(e)
     }
     else if (e.keyCode === 32) {
@@ -91,6 +94,7 @@ function InputContainer() {
 
       }
       else {
+        seTimer(false)
         e.preventDefault()
         setInputValue('')
         console.log("Round is Over!")
