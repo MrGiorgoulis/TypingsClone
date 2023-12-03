@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { RedoStateUpdateContext } from './MainContainer'
+import { RedoStateUpdateContext } from '../App'
 
 function RedoButton() {
 

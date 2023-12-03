@@ -1,13 +1,11 @@
 import React, {useState, useEffect, useContext} from 'react'
 import TextDisplay from './TextDisplay'
-import { RedoStateContext, RedoStateUpdateContext } from './MainContainer'
+import { RedoStateContext } from '../App'
 
 function FetchData({wordCount}) {
 
-    const sample = null
     const [data, setData] = useState(null)
 
-    const setShouldReRender = useContext(RedoStateUpdateContext)
     const shouldReRender = useContext(RedoStateContext)
 
     useEffect(() => {

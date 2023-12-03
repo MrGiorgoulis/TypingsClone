@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { IsWordValidContext, RandomWordsContext, SetRandomWordsContext } from './MainContainer';
-import { RedoStateContext, RedoStateUpdateContext } from './MainContainer'
+import React, { useEffect, useContext } from 'react'
+import { IsWordValidContext, SetIstWordValidContext, RandomWordsContext, SetRandomWordsContext } from './MainContainer';
+import { RedoStateContext } from '../App'
 
 function TextDisplay({ wc, wordList }) {
 
   const randomWords = useContext(RandomWordsContext)
   const setRandomWords = useContext(SetRandomWordsContext)
   const isWordValid = useContext(IsWordValidContext)
+  const setIsWordValid = useContext(SetIstWordValidContext)
   
-  const setShouldReRender = useContext(RedoStateUpdateContext)
   const shouldReRender = useContext(RedoStateContext)
 
   useEffect(() => {
@@ -20,7 +20,8 @@ function TextDisplay({ wc, wordList }) {
           setRandomWords(prevArray => [...prevArray, newWord])
         }
       }
-  }, [wc, wordList,shouldReRender]);
+      setIsWordValid([])
+  }, [wc, wordList,shouldReRender,setIsWordValid, setRandomWords]);
 
 
   return (

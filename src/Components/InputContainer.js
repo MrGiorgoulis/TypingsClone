@@ -3,7 +3,7 @@ import RedoButton from './RedoButton'
 import { IsWordValidContext, RandomWordsContext } from './MainContainer'
 import { WordCountContext } from '../App'
 import { SetIstWordValidContext } from './MainContainer'
-import { RedoStateContext,RedoStateUpdateContext } from './MainContainer'
+import { RedoStateContext,RedoStateUpdateContext } from '../App'
 
 function InputContainer() {
 

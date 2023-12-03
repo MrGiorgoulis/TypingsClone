@@ -1,8 +1,12 @@
 import React, { useContext, useState } from 'react'
 import '../styles.css'
-import { UpdateWordCountContext } from '../App'
+import { UpdateWordCountContext, RedoStateContext, RedoStateUpdateContext } from '../App'
 
 function TextLengthSelector({ }) {
+
+  const redoState = useContext(RedoStateContext)
+  const shouldReRender = useContext(RedoStateUpdateContext)
+  const updateRedoState = useContext(RedoStateUpdateContext)
 
   const UpdateWordCount = useContext(UpdateWordCountContext)
 
@@ -24,6 +28,7 @@ function TextLengthSelector({ }) {
       state: item.id === id ? true : false,
     }))
     setIsActive(nextItems)
+    updateRedoState(true)
   }
 
   return (
