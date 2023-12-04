@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import RedoButton from './RedoButton'
-import { IsWordValidContext, RandomWordsContext } from './MainContainer'
-import { WordCountContext } from '../App'
-import { SetIstWordValidContext } from './MainContainer'
-import { RedoStateContext,RedoStateUpdateContext, SetStopTimer } from '../App'
+import { IsWordValidContext, RandomWordsContext, SetIstWordValidContext } from './MainContainer'
+import { WordCountContext, RedoStateContext } from './CommandCenter'
+import { SetStopTimer } from '../App'
 
 function InputContainer() {
 

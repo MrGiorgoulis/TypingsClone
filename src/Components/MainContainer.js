@@ -1,7 +1,7 @@
 import React, {  useContext, useEffect, useState } from 'react'
 import FetchData from './FetchData'
 import InputContainer from './InputContainer'
-import { WordCountContext, RedoStateContext } from '../App'
+import { RedoStateContext } from './CommandCenter'
 
 export const RandomWordsContext = React.createContext()
 export const SetRandomWordsContext = React.createContext()
@@ -10,8 +10,6 @@ export const IsWordValidContext = React.createContext()
 export const SetIstWordValidContext = React.createContext()
 
 function MainContainer() {
-
-  const wordCount = useContext(WordCountContext)
 
   const [randomWords, setRandomWords] = useState([])
 
@@ -31,7 +29,7 @@ function MainContainer() {
               <div className="main-container">
               <IsWordValidContext.Provider value={isWordValid}>
                 <SetIstWordValidContext.Provider value={setIsWordValid}>
-                    <FetchData wordCount={wordCount} />
+                    <FetchData />
                     <InputContainer/>
                   </SetIstWordValidContext.Provider>
               </IsWordValidContext.Provider>

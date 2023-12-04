@@ -1,11 +1,9 @@
 import React, { useContext, useState } from 'react'
 import '../styles.css'
-import { UpdateWordCountContext, RedoStateContext, RedoStateUpdateContext } from '../App'
+import { RedoStateUpdateContext } from './CommandCenter'
+import { UpdateWordCountContext } from './CommandCenter'
 
-function TextLengthSelector({ }) {
-
-  const redoState = useContext(RedoStateContext)
-  const shouldReRender = useContext(RedoStateUpdateContext)
+function TextLengthSelector() {
   const updateRedoState = useContext(RedoStateUpdateContext)
 
   const UpdateWordCount = useContext(UpdateWordCountContext)
