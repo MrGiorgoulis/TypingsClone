@@ -3,9 +3,12 @@ import RedoButton from './RedoButton'
 import { IsWordValidContext, RandomWordsContext, SetIstWordValidContext } from './MainContainer'
 import { WordCountContext, RedoStateContext } from './CommandCenter'
 import { SetStopTimer } from '../App'
+import { SetWpmContext, ElapsedTimeContext } from '../App'
 
 function InputContainer() {
 
+  const elapsedTime = useContext(ElapsedTimeContext)
+  const setWpm = useContext(SetWpmContext)
   const randomWords = useContext(RandomWordsContext)
   const wordCount = useContext(WordCountContext)
   const isWordValid = useContext(IsWordValidContext)
@@ -97,6 +100,12 @@ function InputContainer() {
         e.preventDefault()
         setInputValue('')
         console.log("Round is Over!")
+        if(elapsedTime!== null){
+          console.log("ELAPSED TIME: ", elapsedTime)
+          console.log("Word COUNT: ", wordCount)
+          setWpm(wordCount/(elapsedTime/1000)*60)
+          console.log("WPM is: ",elapsedTime)
+        }
       }
     }
     else if (e.keyCode === 8) {

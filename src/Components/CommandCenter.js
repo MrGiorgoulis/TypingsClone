@@ -9,6 +9,7 @@ export const RedoStateContext = React.createContext()
 export const RedoStateUpdateContext = React.createContext()
 
 
+
 function CommandCenter() {
 
   const [redoState, setRedoState] = useState(true)
@@ -22,12 +23,12 @@ function CommandCenter() {
     <div className="command-center">
       <RedoStateContext.Provider value={redoState}>
         <RedoStateUpdateContext.Provider value={updateRedoState}>
-          <UpdateWordCountContext.Provider value={setWordCnt}>
-            <SettingsBar />
-          </UpdateWordCountContext.Provider>
-          <WordCountContext.Provider value={wordCnt}>
-            <MainContainer className="main-container" />
-          </WordCountContext.Provider>
+        <UpdateWordCountContext.Provider value={setWordCnt}>
+          <SettingsBar />
+        </UpdateWordCountContext.Provider>
+        <WordCountContext.Provider value={wordCnt}>
+          <MainContainer className="main-container" />
+        </WordCountContext.Provider>
         </RedoStateUpdateContext.Provider>
       </RedoStateContext.Provider>
     </div>
