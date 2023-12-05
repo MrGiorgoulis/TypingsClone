@@ -10,17 +10,19 @@ export const SetStopTimer = React.createContext()
 export const ElapsedTimeContext = React.createContext()
 export const SetWpmContext = React.createContext()
 export const WpmContext = React.createContext()
+export const IsWordValidContext = React.createContext()
+export const SetIstWordValidContext = React.createContext()
 
 function App() {
   const [wpm, setWpm] = useState(null)
-  const [startTime, setStartTime] = useState(0);
-  const [isActive, setIsActive] = useState(false);
-  const [elapsedTime, setElapsedTime] = useState(0);
+  const [startTime, setStartTime] = useState(0)
+  const [isActive, setIsActive] = useState(false)
+  const [elapsedTime, setElapsedTime] = useState(0)
+  const [isWordValid, setIsWordValid] = useState([])
 
 
   useEffect(() => {
     let interval
-
     if (isActive) {
       setStartTime(performance.now() - elapsedTime);
 
@@ -47,7 +49,11 @@ function App() {
           <IsTimerActive.Provider value={isActive}>
             <SetStopTimer.Provider value={alterTimer}>
               <SetWpmContext.Provider value={setWpm}>
-                <CommandCenter/>
+                <IsWordValidContext.Provider value={isWordValid}>
+                  <SetIstWordValidContext.Provider value={setIsWordValid}>
+                    <CommandCenter/>
+                  </SetIstWordValidContext.Provider>
+                </IsWordValidContext.Provider>
               </SetWpmContext.Provider>
             </SetStopTimer.Provider>
           </IsTimerActive.Provider>

@@ -2,24 +2,28 @@ import React, {  useContext, useEffect, useState } from 'react'
 import FetchData from './FetchData'
 import InputContainer from './InputContainer'
 import { RedoStateContext } from './CommandCenter'
+import { IsWordValidContext, SetIstWordValidContext } from '../App'
 
 export const RandomWordsContext = React.createContext()
 export const SetRandomWordsContext = React.createContext()
 
-export const IsWordValidContext = React.createContext()
-export const SetIstWordValidContext = React.createContext()
+// export const IsWordValidContext = React.createContext()
+// export const SetIstWordValidContext = React.createContext()
 
 function MainContainer() {
 
   const [randomWords, setRandomWords] = useState([])
 
-  const [isWordValid, setIsWordValid] = useState([])
+  // const [isWordValid, setIsWordValid] = useState([])
+  const isWordValid = useContext(IsWordValidContext)
+  const setIsWordValid = useContext(SetIstWordValidContext)
 
   const redoState = useContext(RedoStateContext)
 
   useEffect(()=>{
     {console.log(redoState)}
     setIsWordValid([])
+    console.log("O PINAKAS MHDENISTHKE")
   }, [redoState])
 
   return (
@@ -27,12 +31,12 @@ function MainContainer() {
       <SetRandomWordsContext.Provider value={setRandomWords}>
         <RandomWordsContext.Provider value={randomWords}>
               <div className="main-container">
-              <IsWordValidContext.Provider value={isWordValid}>
-                <SetIstWordValidContext.Provider value={setIsWordValid}>
+              {/* <IsWordValidContext.Provider value={isWordValid}>
+                <SetIstWordValidContext.Provider value={setIsWordValid}> */}
                     <FetchData />
                     <InputContainer/>
-                  </SetIstWordValidContext.Provider>
-              </IsWordValidContext.Provider>
+                  {/* </SetIstWordValidContext.Provider>
+              </IsWordValidContext.Provider> */}
             </div>
         </RandomWordsContext.Provider>
       </SetRandomWordsContext.Provider>

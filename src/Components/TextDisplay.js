@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react'
-import { IsWordValidContext, SetIstWordValidContext, RandomWordsContext, SetRandomWordsContext } from './MainContainer';
+import { RandomWordsContext, SetRandomWordsContext } from './MainContainer';
+import { IsWordValidContext, SetIstWordValidContext } from '../App';
 import { RedoStateContext } from './CommandCenter'
 
 function TextDisplay({ wc, wordList }) {

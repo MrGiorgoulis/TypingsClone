@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import RedoButton from './RedoButton'
-import { IsWordValidContext, RandomWordsContext, SetIstWordValidContext } from './MainContainer'
+import { RandomWordsContext } from './MainContainer'
 import { WordCountContext, RedoStateContext } from './CommandCenter'
-import { SetStopTimer } from '../App'
-import { SetWpmContext, ElapsedTimeContext } from '../App'
+import { SetWpmContext, ElapsedTimeContext, SetStopTimer, IsWordValidContext, SetIstWordValidContext } from '../App'
 
 function InputContainer() {
 
@@ -86,7 +85,6 @@ function InputContainer() {
     }
     else if (e.keyCode === 32) {
       validateSpace(e)
-      console.log(isWordValid[0])
       if (currentWordIndex + 1 < wordCount) {
         setCurrentLetterIndex(0)
         setCurrentWordIndex(prev => prev + 1)
@@ -102,9 +100,21 @@ function InputContainer() {
         console.log("Round is Over!")
         if(elapsedTime!== null){
           console.log("ELAPSED TIME: ", elapsedTime)
-          console.log("Word COUNT: ", wordCount)
-          setWpm(wordCount/(elapsedTime/1000)*60)
-          console.log("WPM is: ",elapsedTime)
+          let correctWords = 0
+          let wordsChecked = 0
+          isWordValid.map((item) => {
+            console.log(item)
+            if(item===true){
+              wordsChecked ++
+              console.log("word checked now: ", randomWords[wordsChecked-1])
+              console.log("Words checked")
+              console.log("Aukshsh")
+              correctWords ++
+            }
+          })
+          console.log("Word COUNT: ", correctWords)
+          setWpm(correctWords/(elapsedTime/1000)*60)
+          console.log("WPM is: ",correctWords/(elapsedTime/1000)*60)
         }
       }
     }
