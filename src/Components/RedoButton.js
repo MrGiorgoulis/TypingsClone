@@ -8,8 +8,8 @@ function RedoButton() {
   const updateRedoState = useContext(RedoStateUpdateContext)
 
   const handleClick = () => {
-    updateRedoState()
     setTimer(false)
+    updateRedoState()
   }
 
   return (
