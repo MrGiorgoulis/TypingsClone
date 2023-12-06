@@ -5,9 +5,7 @@ import { SetStopTimer } from '../App'
 
 function TextLengthSelector() {
   const setTimer = useContext(SetStopTimer)
-
   const updateRedoState = useContext(RedoStateUpdateContext)
-
   const UpdateWordCount = useContext(UpdateWordCountContext)
 
   const [isActive, setIsActive] = useState([

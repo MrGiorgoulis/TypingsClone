@@ -13,7 +13,7 @@ function RedoButton() {
   }
 
   return (
-      <button className="redo-button" onClick={handleClick}>redo</button>
+    <button className="redo-button" onClick={handleClick}>redo</button>
   )
 }
 

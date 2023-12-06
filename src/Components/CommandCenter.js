@@ -4,11 +4,8 @@ import MainContainer from "./MainContainer";
 
 export const WordCountContext = React.createContext()
 export const UpdateWordCountContext = React.createContext()
-
 export const RedoStateContext = React.createContext()
 export const RedoStateUpdateContext = React.createContext()
-
-
 
 function CommandCenter() {
 
@@ -27,12 +24,12 @@ function CommandCenter() {
             <UpdateWordCountContext.Provider value={setWordCnt}>
               <SettingsBar />
             </UpdateWordCountContext.Provider>
-              <MainContainer className="main-container" />
+            <MainContainer className="main-container" />
           </WordCountContext.Provider>
         </RedoStateUpdateContext.Provider>
       </RedoStateContext.Provider>
     </div>
-    )
+  )
 }
 
 export default CommandCenter

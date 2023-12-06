@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import TextDisplay from './TextDisplay'
 import { RedoStateContext } from './CommandCenter'
 import { WordCountContext } from './CommandCenter'
@@ -11,15 +11,15 @@ function FetchData() {
     const shouldReRender = useContext(RedoStateContext)
 
     useEffect(() => {
-        if(shouldReRender) {
+        if (shouldReRender) {
             const sample = require('../jsons/random.json')
             setData(sample)
         }
-    },[shouldReRender])
+    }, [shouldReRender])
 
     return (
         <div>
-            <TextDisplay wc={wordCount} wordList={data}/>
+            <TextDisplay wc={wordCount} wordList={data} />
         </div>
     )
 }

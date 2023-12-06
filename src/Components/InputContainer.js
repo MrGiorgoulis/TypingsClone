@@ -28,8 +28,8 @@ function InputContainer() {
     const expectedWord = randomWords[currentWordIndex].slice(0, currentLetterIndex + 1)
     const typedWord = `${e.target.value}${e.key}`
 
-    console.log("Typed Word: ", typedWord)
-    console.log("ExpectedWord: ", expectedWord)
+    // console.log("Typed Word: ", typedWord)
+    // console.log("ExpectedWord: ", expectedWord)
 
     if (expectedWord === typedWord) {
       setValid(true)
@@ -38,29 +38,18 @@ function InputContainer() {
       setValid(false)
     }
   }
-  // const validateSpace = e => {
-  //   const expectedWord = randomWords[currentWordIndex]
-  //   const typedWord = e.target.value
-  
-  //   const updatedIsWordValid = expectedWord === typedWord ? [...isWordValid, true] : [...isWordValid, false];
-  
-  //   setIsWordValid(updatedIsWordValid);
-  //   console.log(expectedWord === typedWord ? "PRASINO" : "KOKKINO");
-  // }
 
   const validateSpace = e => {
     const expectedWord = randomWords[currentWordIndex]
     const typedWord = e.target.value
-  
+
     const isValid = expectedWord === typedWord;
-  
+
     // Create a new array by concatenating the current isWordValid array
     const updatedIsWordValid = [...isWordValid, isValid];
-  
+
     // Update the state with the new array
     setIsWordValid(updatedIsWordValid);
-  
-    console.log(isValid ? "PRASINO" : "KOKKINO");
   };
 
   const validateBackSpace = e => {
@@ -69,9 +58,6 @@ function InputContainer() {
 
       const expectedWord = randomWords[currentWordIndex].slice(0, currentLetterIndex - 1)
       const typedWord = e.target.value.slice(0, e.target.value.length - 1)
-
-      console.log("Typed Word: ", typedWord)
-      console.log("ExpectedWord: ", expectedWord)
 
       if (expectedWord === typedWord) {
         setValid(true)
@@ -83,8 +69,8 @@ function InputContainer() {
   }
 
   const handleChange = e => {
-    if (e.keyCode !== 8 && e.keyCode !== 32 && e.keyCode!==9) {
-      if(currentWordIndex===0 && currentLetterIndex === 0 ){
+    if (e.keyCode >= 65 && e.keyCode <= 90) {
+      if (currentWordIndex === 0 && currentLetterIndex === 0) {
         seTimer(true)
       }
       validateLetter(e)
@@ -103,31 +89,11 @@ function InputContainer() {
         seTimer(false)
         e.preventDefault()
         setInputValue('')
-        console.log("Round is Over!")
-        // if(elapsedTime!== null){
-        //   console.log("ELAPSED TIME: ", elapsedTime)
-        //   let correctWords = 0
-        //   let wordsChecked = 0
-        //   isWordValid.map((item) => {
-        //     console.log(item)
-        //     if(item===true){
-        //       console.log("WORDS CHECKED: ", wordsChecked)
-        //       wordsChecked ++
-        //       console.log("WORDS CHECKED: ", wordsChecked)
-        //       correctWords ++
-        //     }
-        //   })
-        //   console.log("Word COUNT: ", correctWords)
-        //   console.log("Elapsed Time: ", elapsedTime/10)
-        //   setWpm((correctWords/(elapsedTime/10)*60))
-        //   console.log("WPM is: ",correctWords/(elapsedTime/1000)*60)
-        // }
       }
     }
     else if (e.keyCode === 8) {
       validateBackSpace(e)
     }
-    else if(e.keyCode === 9){}
   }
 
   useEffect(() => {
@@ -136,7 +102,7 @@ function InputContainer() {
     setCurrentWordIndex(0)
     setValid(true)
     inputRef.current.focus()
-  },[shouldReRender])
+  }, [shouldReRender])
 
   return (
     <div>
