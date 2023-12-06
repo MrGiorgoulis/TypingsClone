@@ -20,47 +20,8 @@ function App() {
   const [elapsedTime, setElapsedTime] = useState(0)
   const [isWordValid, setIsWordValid] = useState([])
 
-
-  // useEffect(() => {
-
-  //   if(isActive){
-  //     const interval = setInterval(() => {
-  //       setElapsedTime((prevTime) => prevTime + 1)
-  //     },100)
-  //   return () => clearInterval(interval)
-  //   } 
-  //   else{
-  //     if(elapsedTime!== null){
-  //       console.log("ELAPSED TIME: ", elapsedTime)
-  //       let correctWords = 0
-  //       let wordsChecked = 0
-  //       isWordValid.map((item) => {
-  //         console.log(item)
-  //         if(item===true){
-  //           console.log("WORDS CHECKED: ", wordsChecked)
-  //           wordsChecked ++
-  //           console.log("WORDS CHECKED: ", wordsChecked)
-  //           correctWords ++
-  //         }
-  //       })
-  //       console.log("Word COUNT: ", correctWords)
-  //       console.log("Elapsed Time: ", elapsedTime/10)
-  //       if(elapsedTime>0){
-  //         setWpm((correctWords/(elapsedTime/10)*60))
-  //       }
-  //       else{
-  //         setWpm(null)
-  //       }
-  //       console.log(typeof wpm)
-  //       console.log("WPM is: ",correctWords/(elapsedTime/1000)*60)
-  //     }
-  //     setElapsedTime(0)
-  //   }
-  // },[isActive])   
-
   return (
     <div className="typer">
-      COUNTER - {elapsedTime}
       <div className="header">Typer</div>
       <SetElapsedTimeContext.Provider value={setElapsedTime}>
         <ElapsedTimeContext.Provider value={elapsedTime}>
@@ -70,7 +31,7 @@ function App() {
                 <SetWpmContext.Provider value={setWpm}>
                   <IsWordValidContext.Provider value={isWordValid}>
                     <SetIstWordValidContext.Provider value={setIsWordValid}>
-                      <CommandCenter/>
+                      <CommandCenter />
                     </SetIstWordValidContext.Provider>
                   </IsWordValidContext.Provider>
                 </SetWpmContext.Provider>
