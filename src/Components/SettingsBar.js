@@ -14,6 +14,7 @@ function SettingsBar() {
   const wpm = useContext(WpmContext)
 
   const [acc, setAcc] = useState(null)
+  const [keepResults, setKeepResults] = useState(false)
 
   useEffect(() => {
 
@@ -26,17 +27,24 @@ function SettingsBar() {
     else {
       if (elapsedTime !== null) {
         let correctWords = 0
+        let wordsChecked = 0
         isWordValid.map((item) => {
+          wordsChecked++
           if (item === true) {
             correctWords++
           }
         })
         if (elapsedTime > 0) {
-          setWpm((correctWords / (elapsedTime / 10) * 60))
-          setAcc((correctWords / wordCount) * 100)
+          if(wordsChecked===wordCount){
+            setWpm((correctWords / (elapsedTime / 10) * 60))
+            setAcc((correctWords / wordCount) * 100)
+          }
+          else{
+            console.log("WChck ", wordsChecked)
+          }
         }
         else {
-          setWpm(null)
+          // setWpm(null)    
         }
       }
       setElapsedTime(0)
@@ -46,7 +54,10 @@ function SettingsBar() {
   return (
     <div className="settings-bar">
       <TextLengthSelector />
-      <div className="stats-display">WPM: {wpm !== null ? parseInt(wpm) : 'XX'} / ACC: {acc !== null ? acc : 'XX'}</div>
+      <div className="stats-display">
+        WPM: {wpm !== null ? parseInt(wpm) : 'XX'} 
+      / ACC: {acc !== null ? acc : 'XX'}
+      </div>
     </div>
   )
 }

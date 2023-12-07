@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react'
 import "./styles.css"
 import CommandCenter from './Components/CommandCenter';
 
-// export const RedoStateContext = React.createContext()
-// export const RedoStateUpdateContext = React.createContext()
-
 export const IsTimerActive = React.createContext()
 export const SetStopTimer = React.createContext()
 export const ElapsedTimeContext = React.createContext()
@@ -15,7 +12,7 @@ export const IsWordValidContext = React.createContext()
 export const SetIstWordValidContext = React.createContext()
 
 function App() {
-  const [wpm, setWpm] = useState(0)
+  const [wpm, setWpm] = useState(null)
   const [isActive, setIsActive] = useState(false)
   const [elapsedTime, setElapsedTime] = useState(0)
   const [isWordValid, setIsWordValid] = useState([])
